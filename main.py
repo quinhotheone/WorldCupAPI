@@ -189,3 +189,23 @@ async def detail_match(match_id: int):
             return match
 
     raise HTTPException(status_code=404, detail="Match not found")
+
+@app.get("/matches/date/{matchdate}")
+async def filter_matches_by_date(matchdate: str):
+
+    daily_matches = []
+
+    for match in wc_matches:
+        match_date_string = match["datetime"].date().isoformat()
+
+        if match_date_string == matchdate:
+            daily_matches.append(match)
+
+    if not daily_matches:
+        raise HTTPException(status_code=404, detail="Match not found. Reminder: format should be YYYY-MM-DD")
+
+    return {
+        "date": matchdate,
+        "total_matches": len(daily_matches),
+        "matches": daily_matches
+    }
