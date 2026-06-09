@@ -69,7 +69,9 @@ wc_matches = [
         "away": wc_groups["A"][1],
         "group": "A",
         "stadium": wc_stadiums["MEX_AZT"],
-        "datetime": datetime(2026, 6, 11, tzinfo=timezone.utc)
+        "datetime": datetime(2026, 6, 11, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
     },
     {
         "id": 2,
@@ -77,7 +79,9 @@ wc_matches = [
         "away": wc_groups["A"][3],
         "group": "A",
         "stadium": wc_stadiums["MEX_GUA"],
-        "datetime": datetime(2026, 6, 11, tzinfo=timezone.utc)
+        "datetime": datetime(2026, 6, 11, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
     },
     {
         "id": 3,
@@ -85,7 +89,9 @@ wc_matches = [
         "away": wc_groups["B"][1],
         "group": "B",
         "stadium": wc_stadiums["CAN_TOR"],
-        "datetime": datetime(2026, 6, 12, tzinfo=timezone.utc)
+        "datetime": datetime(2026, 6, 12, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
     },
     {
         "id": 4,
@@ -93,7 +99,9 @@ wc_matches = [
         "away": wc_groups["D"][1],
         "group": "D",
         "stadium": wc_stadiums["USA_LA"],
-        "datetime": datetime(2026, 6, 12, tzinfo=timezone.utc)
+        "datetime": datetime(2026, 6, 12, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
     },
     {
         "id": 5,
@@ -101,7 +109,9 @@ wc_matches = [
         "away": wc_groups["B"][3],
         "group": "B",
         "stadium": wc_stadiums["USA_SF"],
-        "datetime": datetime(2026, 6, 13, tzinfo=timezone.utc)
+        "datetime": datetime(2026, 6, 13, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
     },
     {
         "id": 6,
@@ -109,7 +119,9 @@ wc_matches = [
         "away": wc_groups["C"][1],
         "group": "C",
         "stadium": wc_stadiums["USA_NY_NJ"],
-        "datetime": datetime(2026, 6, 13, tzinfo=timezone.utc)
+        "datetime": datetime(2026, 6, 13, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
     },
     {
         "id": 7,
@@ -117,7 +129,9 @@ wc_matches = [
         "away": wc_groups["C"][3],
         "group": "C",
         "stadium": wc_stadiums["USA_BOS"],
-        "datetime": datetime(2026, 6, 13, tzinfo=timezone.utc)
+        "datetime": datetime(2026, 6, 13, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
     },
     {
         "id": 8,
@@ -125,7 +139,9 @@ wc_matches = [
         "away": wc_groups["D"][3],
         "group": "D",
         "stadium": wc_stadiums["CAN_VAN"],
-        "datetime": datetime(2026, 6, 14, tzinfo=timezone.utc)
+        "datetime": datetime(2026, 6, 14, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
     },
     {
         "id": 9,
@@ -133,7 +149,9 @@ wc_matches = [
         "away": wc_groups["E"][1],
         "group": "E",
         "stadium": wc_stadiums["USA_HOU"],
-        "datetime": datetime(2026, 6, 14, tzinfo=timezone.utc)
+        "datetime": datetime(2026, 6, 14, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
     },
     {
         "id": 10,
@@ -141,7 +159,9 @@ wc_matches = [
         "away": wc_groups["F"][1],
         "group": "F",
         "stadium": wc_stadiums["USA_DAL"],
-        "datetime": datetime(2026, 6, 14, tzinfo=timezone.utc)
+        "datetime": datetime(2026, 6, 14, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
     },
     {
         "id": 11,
@@ -149,7 +169,9 @@ wc_matches = [
         "away": wc_groups["E"][3],
         "group": "E",
         "stadium": wc_stadiums["USA_PHI"],
-        "datetime": datetime(2026, 6, 14, tzinfo=timezone.utc)
+        "datetime": datetime(2026, 6, 14, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
     },
     {
         "id": 12,
@@ -157,7 +179,9 @@ wc_matches = [
         "away": wc_groups["F"][3],
         "group": "F",
         "stadium": wc_stadiums["MEX_MON"],
-        "datetime": datetime(2026, 6, 14, tzinfo=timezone.utc)
+        "datetime": datetime(2026, 6, 14, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
     },
     # {
     #     15/06...
@@ -209,3 +233,16 @@ async def filter_matches_by_date(matchdate: str):
         "total_matches": len(daily_matches),
         "matches": daily_matches
     }
+
+
+match_status = {
+    "NS": "Not Started",
+    "1H": "First Half",
+    "HT": "Half Time",
+    "2H": "Second Half",
+    "1HE": "First Half Extra Time",
+    "HET": "Half Extra Time",
+    "2HE": "Second Half Extra Time",
+    "PS": "Penalty Shootout",
+    "FT": "Full Time"
+}
