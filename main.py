@@ -305,7 +305,247 @@ wc_matches = [
         "status": "NS"
     },
     {
-        # Second Round - Group Stage
+        "id": 25,
+        "home": wc_groups["A"][3],
+        "away": wc_groups["A"][1],
+        "group": "A",
+        "stadium": wc_stadiums["USA_ATL"],
+        "datetime": datetime(2026, 6, 18, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 26,
+        "home": wc_groups["B"][3],
+        "away": wc_groups["B"][1],
+        "group": "B",
+        "stadium": wc_stadiums["USA_LA"],
+        "datetime": datetime(2026, 6, 18, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 27,
+        "home": wc_groups["B"][0],
+        "away": wc_groups["B"][2],
+        "group": "B",
+        "stadium": wc_stadiums["CAN_VAN"],
+        "datetime": datetime(2026, 6, 18, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 28,
+        "home": wc_groups["A"][0],
+        "away": wc_groups["A"][2],
+        "group": "A",
+        "stadium": wc_stadiums["MEX_GUA"],
+        "datetime": datetime(2026, 6, 18, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 29,
+        "home": wc_groups["D"][0],
+        "away": wc_groups["D"][2],
+        "group": "D",
+        "stadium": wc_stadiums["USA_SEA"],
+        "datetime": datetime(2026, 6, 19, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 30,
+        "home": wc_groups["C"][3],
+        "away": wc_groups["C"][1],
+        "group": "C",
+        "stadium": wc_stadiums["USA_BOS"],
+        "datetime": datetime(2026, 6, 19, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 31,
+        "home": wc_groups["C"][0],
+        "away": wc_groups["C"][2],
+        "group": "C",
+        "stadium": wc_stadiums["USA_PHI"],
+        "datetime": datetime(2026, 6, 19, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 32,
+        "home": wc_groups["D"][3],
+        "away": wc_groups["D"][1],
+        "group": "D",
+        "stadium": wc_stadiums["USA_SF"],
+        "datetime": datetime(2026, 6, 20, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 33,
+        "home": wc_groups["F"][0],
+        "away": wc_groups["F"][2],
+        "group": "F",
+        "stadium": wc_stadiums["USA_HOU"],
+        "datetime": datetime(2026, 6, 20, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 34,
+        "home": wc_groups["E"][0],
+        "away": wc_groups["E"][2],
+        "group": "E",
+        "stadium": wc_stadiums["CAN_TOR"],
+        "datetime": datetime(2026, 6, 20, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 35,
+        "home": wc_groups["E"][3],
+        "away": wc_groups["E"][1],
+        "group": "E",
+        "stadium": wc_stadiums["USA_KAN"],
+        "datetime": datetime(2026, 6, 20, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 36,
+        "home": wc_groups["F"][3],
+        "away": wc_groups["F"][1],
+        "group": "F",
+        "stadium": wc_stadiums["MEX_MON"],
+        "datetime": datetime(2026, 6, 21, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 37,
+        "home": wc_groups["H"][0],
+        "away": wc_groups["H"][2],
+        "group": "H",
+        "stadium": wc_stadiums["USA_ATL"],
+        "datetime": datetime(2026, 6, 21, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 38,
+        "home": wc_groups["G"][0],
+        "away": wc_groups["G"][2],
+        "group": "G",
+        "stadium": wc_stadiums["USA_LA"],
+        "datetime": datetime(2026, 6, 21, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 39,
+        "home": wc_groups["H"][3],
+        "away": wc_groups["H"][1],
+        "group": "H",
+        "stadium": wc_stadiums["USA_MIA"],
+        "datetime": datetime(2026, 6, 21, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 40,
+        "home": wc_groups["G"][3],
+        "away": wc_groups["G"][1],
+        "group": "G",
+        "stadium": wc_stadiums["CAN_VAN"],
+        "datetime": datetime(2026, 6, 21, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 41,
+        "home": wc_groups["J"][0],
+        "away": wc_groups["J"][2],
+        "group": "J",
+        "stadium": wc_stadiums["USA_DAL"],
+        "datetime": datetime(2026, 6, 22, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 42,
+        "home": wc_groups["I"][0],
+        "away": wc_groups["I"][2],
+        "group": "I",
+        "stadium": wc_stadiums["USA_PHI"],
+        "datetime": datetime(2026, 6, 22, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 43,
+        "home": wc_groups["I"][3],
+        "away": wc_groups["I"][1],
+        "group": "I",
+        "stadium": wc_stadiums["USA_NY_NJ"],
+        "datetime": datetime(2026, 6, 22, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 44,
+        "home": wc_groups["J"][3],
+        "away": wc_groups["J"][1],
+        "group": "J",
+        "stadium": wc_stadiums["USA_SF"],
+        "datetime": datetime(2026, 6, 23, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 45,
+        "home": wc_groups["K"][0],
+        "away": wc_groups["K"][2],
+        "group": "K",
+        "stadium": wc_stadiums["USA_HOU"],
+        "datetime": datetime(2026, 6, 23, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 46,
+        "home": wc_groups["L"][0],
+        "away": wc_groups["L"][2],
+        "group": "L",
+        "stadium": wc_stadiums["USA_BOS"],
+        "datetime": datetime(2026, 6, 23, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 47,
+        "home": wc_groups["L"][3],
+        "away": wc_groups["L"][1],
+        "group": "L",
+        "stadium": wc_stadiums["CAN_TOR"],
+        "datetime": datetime(2026, 6, 23, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        "id": 48,
+        "home": wc_groups["K"][3],
+        "away": wc_groups["K"][1],
+        "group": "K",
+        "stadium": wc_stadiums["MEX_GUA"],
+        "datetime": datetime(2026, 6, 23, tzinfo=timezone.utc),
+        "score": {"home_score": 0, "away_score": 0},
+        "status": "NS"
+    },
+    {
+        # Third Round
     }
 ]
 
