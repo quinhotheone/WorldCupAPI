@@ -1,6 +1,5 @@
 from fastapi import APIRouter, HTTPException
-
-from database import wc_matches
+from database import wc_matches, wc_groups
 
 router = APIRouter(prefix="/standings", tags=["Standings"])
 
@@ -8,26 +7,26 @@ router = APIRouter(prefix="/standings", tags=["Standings"])
 async def get_standings():
 
     standings = {}
-    for group, teams in standings.items():
+    for group, teams in wc_groups.items():
         standings[group] = []
         for team in teams:
             standings[group].append({
                 "team": team,
                 "points": 0,
-                "matches": 0,
+                "played": 0,
                 "wins": 0,
                 "losses": 0,
                 "draws": 0,
                 "goals_for": 0,
                 "goals_against": 0,
-                "goals_difference": 0
+                "goal_difference": 0
             })
 
     for match in wc_matches:
         if match["status"] != "NS":
             group = match["group"]
-            home_team = match["home_team"]
-            away_team = match["away_team"]
+            home_team = match["home"]
+            away_team = match["away"]
             home_score = match["score"]["home_score"]
             away_score = match["score"]["away_score"]
 
@@ -46,8 +45,8 @@ async def get_standings():
             away_stat["goals_against"] += home_score
 
             # Calc GD
-            home_stat["goals_difference"] = home_stat["goals_for"] - home_stat["goals_against"]
-            away_stat["goals_difference"] = away_stat["goals_for"] - away_stat["goals_against"]
+            home_stat["goal_difference"] = home_stat["goals_for"] - home_stat["goals_against"]
+            away_stat["goal_difference"] = away_stat["goals_for"] - away_stat["goals_against"]
 
             # Update points and stats
             if home_score > away_score:
@@ -65,9 +64,9 @@ async def get_standings():
                 away_stat["points"] += 1
 
         # Review tiebreak criteria (points > goals_difference > goals_for)
-        for group in standings:
-            standings[group].sort(
-                key=lambda x: (x["points"], x["goal_difference"], x["goals_for"]),
-                reverse=True)
+    for group in standings:
+        standings[group].sort(
+            key=lambda x: (x["points"], x["goal_difference"], x["goals_for"]),
+            reverse=True)
 
-            return {"standings": standings}
+    return {"standings": standings}
