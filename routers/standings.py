@@ -64,4 +64,10 @@ async def get_standings():
                 home_stat["points"] += 1
                 away_stat["points"] += 1
 
-        # Review tiebreaker criteria (points > goals_difference > goals_for)
+        # Review tiebreak criteria (points > goals_difference > goals_for)
+        for group in standings:
+            standings[group].sort(
+                key=lambda x: (x["points"], x["goal_difference"], x["goals_for"]),
+                reverse=True)
+
+            return {"standings": standings}
