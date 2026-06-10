@@ -62,8 +62,8 @@ wc_matches = [
         "group": "A",
         "stadium": wc_stadiums["MEX_AZT"],
         "datetime": datetime(2026, 6, 11, tzinfo=timezone.utc),
-        "score": {"home_score": 0, "away_score": 0},
-        "status": "NS"
+        "score": {"home_score": 1, "away_score": 1},
+        "status": "FT"
     },
     {
         "id": 2,
@@ -73,7 +73,7 @@ wc_matches = [
         "stadium": wc_stadiums["MEX_GUA"],
         "datetime": datetime(2026, 6, 11, tzinfo=timezone.utc),
         "score": {"home_score": 0, "away_score": 0},
-        "status": "NS"
+        "status": "FT"
     },
     {
         "id": 3,
