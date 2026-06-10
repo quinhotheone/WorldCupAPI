@@ -20,10 +20,10 @@ wc_groups = {
 }
 
 
+@app.head("/")
 @app.get("/")
 async def home():
     return {"message": "World Cup API 2026 is running!"}
-
 
 @app.get("/groups")
 async def list_groups():
