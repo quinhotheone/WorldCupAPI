@@ -1,8 +1,7 @@
 import os
 import requests
+import sqlite3
 from dotenv import load_dotenv
-
-from database import wc_matches
 
 # "Local name": "API name"
 team_translator = {
@@ -18,57 +17,83 @@ team_translator = {
 
 # Load environment variables and authenticate
 load_dotenv()
-api_key = os.getenv("API_FOOTBALL_KEY")
+API_KEY = os.getenv("FOOTBALL_DATA_API_KEY")
+DB_PATH = "worldcup.db"
 
-if not api_key:
-    raise ValueError("API_FOOTBALL_KEY not set! Verify your .env file.")
+def sync_matches():
+    print("Starting sync with Football-Data.org...")
 
-url = "https://v3.football.api-sports.io/fixtures?league=1&season=2026"
-headers = {"x-apisports-key": api_key}
+    if not API_KEY:
+        raise ValueError("FOOTBALL_DATA_API_KEY not set! Verify your .env file.")
+        return
 
-print("Starting background sync with API-Football...")
-response = requests.get(url, headers=headers)
+    # WC id=2000
+    url = "https://api.football-data.org/v4/competitions/2000/matches"
+    headers = {"X-Auth-Token": API_KEY}
 
-if response.status_code == 200:
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        print(f"Error accessing the API: {e}")
+        return
+
     data = response.json()
-    live_matches = data.get("response", [])
+    matches_api = data.get("matches", [])
 
-    update_count = 0
+    if not matches_api:
+        print("Matches not found!")
+        return
 
-    for live_match in live_matches:
-        api_home_team = live_match["teams"]["home"]["name"]
-        api_away_team = live_match["teams"]["away"]["name"]
-        api_status = live_match["fixture"]["status"]["short"]
-        api_home_goals = live_match["goals"]["home"]
-        api_away_goals = live_match["goals"]["away"]
+    connection_db = sqlite3.connect(DB_PATH)
+    cursor = connection_db.cursor()
+    updates = 0
 
-        for local_match in wc_matches:
+    for match in matches_api:
+        status = match.get("status")
+        home_team_api = match.get("homeTeam", {})
+        away_team_api = match.get("awayTeam", {})
+        score = match.get("score", {}).get("fullTime", {})
 
-            local_home_translated = team_translator.get(local_match["home"], local_match["home"])
-            local_away_translated = team_translator.get(local_match["away"], local_match["away"])
+        home_code = home_team_api.get("tla")
+        away_code = away_team_api.get("tla")
+        home_goals = score.get("home")
+        away_goals = score.get("away")
 
-            if local_home_translated == api_home_team and local_away_translated == api_away_team:
+        if not home_code or not away_code or home_goals is None or away_goals is None:
+            continue
 
-                local_match["status"] = api_status
+        cursor.execute("""
+        SELECT m.id, m.home_score, m.away_score
+        FROM matches m
+        JOIN teams th ON m.home_team_id = th.id
+        JOIN teams ta ON m.away_team_id = ta.id
+        WHERE th.fifa_code = ? AND ta.fifa_code = ?
+        """, (home_code, away_code))
 
-                if api_home_goals is not None and api_away_goals is not None:
-                    local_match["score"]["home_score"] = api_home_goals
-                    local_match["score"]["away_score"] = api_away_goals
+        db_match = cursor.fetchone()
 
-                update_count += 1
-                break
+        if db_match:
+            match_id, db_home_score, db_away_score = db_match
 
-    print(f"Sync complete! Successfully updated for {update_count} matches.")
+            # Verifying updates
+            if db_home_score != home_goals or db_away_score != away_goals:
+                cursor.execute("""
+                UPDATE matches
+                SET home_score = ?, away_score = ?, status = ?
+                WHERE id = ?
+                """, (home_goals, away_goals, status, match_id))
+                updates += 1
+                print(f"It is a GOAL! {home_code} {home_goals} x {away_goals} {away_code}")
 
-    print(f"\n--- ALL LOCAL MATCHES STATUS REPORT ---")
-    for match in wc_matches:
-        status_icon = "⚪" if match["status"] == "FT" else "🟢" if match["status"] == "1H" or match[
-            "status"] == "2H" else "🔵"
-        home_score = match["score"]["home_score"]
-        away_score = match["score"]["away_score"]
+    if updates > 0:
+        connection_db.commit()
+        print(f"Sync complete! Successfully updated for {updates} matches in database.")
+    else:
+        print("Sync complete. No updates needed for now!")
 
-        print(
-            f"{status_icon} [{match['status']}] {match['home']} {home_score} - {away_score} {match['away']} (Group {match['group']})")
+    connection_db.close()
 
-else:
-    print(f"Connection error: {response.status_code}")
+if __name__ == "__main__":
+    sync_matches()
+
